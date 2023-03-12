@@ -349,6 +349,8 @@ esdhc_send_cmd(struct mmc *mmc, struct mmc_cmd *cmd, struct mmc_data *data)
 	 * Note: This is way more than 8 cycles, but 1ms seems to
 	 * resolve timing issues with some cards
 	 */
+	// 等待至少8个SD时钟周期后，再执行下一条命令
+	// 这远远超过了8个循环，但1毫秒似乎解决了一些卡的时序问题
 	udelay(1000);
 
 	/* Set up for a data transfer if we have one */
